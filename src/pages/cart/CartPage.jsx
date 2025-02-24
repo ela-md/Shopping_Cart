@@ -1,7 +1,10 @@
-import 'CartPage.css'
+import Navbar from '../../components/navbar/Navbar'
 function CartPage(){
     return(
-        <h1>cartpage</h1>
+       <>
+       <Navbar />
+       <h2>cartpage</h2>
+       </>
     )
 }
 

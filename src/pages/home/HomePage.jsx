@@ -1,7 +1,10 @@
-import 'HomePage.css'
+import Navbar from '../../components/navbar/Navbar'
 function HomePage(){
     return(
-        <h1>homepage</h1>
+       <>
+       <Navbar />
+       <h2>homepage</h2>
+       </>
     )
 }
 
