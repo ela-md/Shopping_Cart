@@ -1,9 +1,11 @@
 import './Navbar.css'
 import { BsCart4 } from "react-icons/bs";
-import { useGlobalContext } from '../../context.jsx';
+import {AppContext} from '../../context'
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+
 function Navbar(){
-    const {addedToCart} = useGlobalContext();
+    const {addedToCart} = useContext(AppContext)
     return(
         <nav>
             <p>
@@ -16,7 +18,7 @@ function Navbar(){
                    <BsCart4  color='white' size='30px'/>
                 </Link>
 
-                { addedToCart > 0 && <span>{addedToCart}</span>}
+                {addedToCart >0 && <span>{addedToCart}</span>}
                
             </p>
         </nav>

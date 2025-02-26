@@ -1,18 +1,20 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 
-const AppContext = createContext()
 
-export const AppProvider = ({children}) => {
+export const AppContext = createContext()
+
+ const AppProvider = ({children}) => {
   
     const [addedToCart, setAddedToCart] = useState(0);
-    const [addedProducts, setAddedProducts] = useState([])
-    const contextValue = {addedToCart, setAddedToCart, addedProducts, setAddedProducts};
+    const [addedProducts, setAddedProducts] = useState([]);
+ 
 
+   const contextValue = {addedToCart, setAddedToCart, addedProducts, setAddedProducts}
     return(
-        <AppContext.Provider value={{contextValue}}>  
+        <AppContext.Provider value={contextValue}>  
           {children}
         </AppContext.Provider>
     )
 }
 
-export const useGlobalContext = () => useContext(AppContext);
+export default AppProvider
