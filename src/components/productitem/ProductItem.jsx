@@ -8,15 +8,28 @@ function ProductItem({id, image, name, price}){
 const {addedToCart, setAddedToCart, addedProducts, setAddedProducts} = useContext(AppContext)
 
 const addToCartHandler = ()=> {
-setAddedToCart(addedToCart + 1)
-const product = database.find(product => product.id == id)
-product.count = 1
-product.totalPrice = product.price * product.count
-setAddedProducts(prevState => [...prevState , product]);
 
+    if(isProductExistInCart()) {
+         const updateAddedproduct = [...addedProducts]
+         updateAddedproduct.map(product => {
+            if(product.id == id) {
+                product.count += 1
+                product.totalPrice = product.count * product.price
+            }
+            setAddedProducts(updateAddedproduct)
+            return
+         })
+    }else{
+        setAddedToCart(addedToCart + 1)
+        const product = database.find(product => product.id == id)
+        product.count = 1
+        product.totalPrice = product.price * product.count
+        setAddedProducts(prevState => [...prevState , product]);
+    }
+}
 
-
-
+const isProductExistInCart = () => {
+  return  addedProducts.some(product => product.id == id)
 }
 
 return(
